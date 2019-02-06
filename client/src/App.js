@@ -27,10 +27,6 @@ class App extends Component {
                   dataUrlArray[option] = {key: option, data: response.data.urlArray[option].data.url};
 
               }
-
-
-
-
               console.log(dataUrlArray)
               setterFunction(dataUrlArray);
           });
@@ -56,11 +52,13 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+            {/*<p key={url.key} >{url.data}</p>*/}
             <div>
                 {this.state.apiResponse.map((url) => (
-                    <p key={url.key} >{url.data}</p>
+                    <img src={url.data} alt="new" />
                 ))}
             </div>);
+
         </header>
       </div>
     );
