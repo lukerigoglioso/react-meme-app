@@ -53,11 +53,12 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
             {/*<p key={url.key} >{url.data}</p>*/}
+            {this.state.apiResponse.map((url) => (
             <div>
-                {this.state.apiResponse.map((url) => (
-                    <img src={url.data} alt="new" />
-                ))}
-            </div>);
+                    <img src={url.data} />
+            </div>
+            ))};
+
 
         </header>
       </div>
