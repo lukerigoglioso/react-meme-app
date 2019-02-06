@@ -23,8 +23,14 @@ class App extends Component {
              console.log(response.data.urlArray);
               for (var option in response.data.urlArray) {
                   // console.log(response.data.urlArray[option].data.url);
-                  dataUrlArray[option] = response.data.urlArray[option].data.url;
+                  // dataUrlArray[option] = response.data.urlArray[option].data.url;
+                  dataUrlArray[option] = {key: option, data: response.data.urlArray[option].data.url};
+
               }
+
+
+
+
               console.log(dataUrlArray)
               setterFunction(dataUrlArray);
           });
@@ -52,7 +58,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
             <div>
                 {this.state.apiResponse.map((url) => (
-                    <p>{url}</p>
+                    <p key={url.key} >{url.data}</p>
                 ))}
             </div>);
         </header>
