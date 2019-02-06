@@ -20,23 +20,12 @@ var request = require('request');
          request(options,function (error, response, body) {
              if (error) throw new Error(error);
              jsonResponse = JSON.parse(body);
-             console.debug(jsonResponse.data);
-
-             var dataUrlObject = {} ;
-             jsonResponse.data.children.forEach(function (x) {
-                 dataUrlObject[x.data.url] = x ;
-                 console.debug(x);
-             });
-             console.log(dataUrlObject)
-             res.json({dataUrlObject})
+             var childArray = jsonResponse.data.children;
+             var urlArray = childArray.slice(0,childArray.length);
+             jsonResponse = {urlArray}
+             res.json(jsonResponse);
          });
-
  });
-
-// var byId2 = {};
-// data.benefitsList.forEach(function (x) {
-//     byId2[x.benlistCodeCd] = x;
-// });
 
 module.exports = router;
 
@@ -44,3 +33,11 @@ module.exports = router;
 
 
 // object.jsonResponse.data.children[].data.url
+
+// var colors = ['red', 'green', 'blue'];
+// colors.forEach(function(color) {
+//     console.log(color);
+// });
+// // red
+// // green
+// // blue
