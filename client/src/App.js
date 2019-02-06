@@ -5,19 +5,34 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" };
+    this.state = { apiResponse: ""
+    };
   }
 
   callAPI() {
-    fetch("http://localhost:9000/testAPI")
+    fetch("http://localhost:9000/memes")
     .then(res => res.text())
-    .then(res => this.setState({ apiResponse: res }));
+    .then(res => this.setState({ apiResponse: JSON.stringify(res)}));
   }
   componentWillMount() {
     this.callAPI();
   }
   render() {
+      var obj = this.state.apiResponse ;
+      //
+      //
+      if (obj === "") {
+          console.log("api response is null")
+      } else {
+          debugger;
+          var jsonParse = JSON.parse(obj) ;
+          console.log(JSON.parse(obj));
+      }
+
+
+
     return (
+
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
