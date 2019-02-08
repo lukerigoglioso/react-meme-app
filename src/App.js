@@ -11,6 +11,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+
 
 class App extends Component {
     constructor(props) {
@@ -42,10 +44,20 @@ class App extends Component {
                     // console.log(response.data.urlArray[option].data.url);
                     // dataUrlArray[option] = response.data.urlArray[option].data.url;
                     dataUrlArray[option] = {key: option, data: jsonResponse[option].data.url};
-
                 }
-                console.log(dataUrlArray)
-                setterFunction(dataUrlArray);
+                console.log(dataUrlArray);
+
+                var left = dataUrlArray.slice(0,12) ;
+                console.log(left);
+                var right = dataUrlArray.slice(13);
+                console.log(right);
+                var arrayObj = [];
+                for (var i = 0; i < left.length ; i++) {
+                    console.log(left[i]);
+                    arrayObj.push({key: i, data: left[i].data, key2: i, data2: right[i].data})
+                }
+                console.log(arrayObj);
+                setterFunction(arrayObj);
             });
 
     }
@@ -61,18 +73,25 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.state.apiResponse);
+
+        var stateResponse = this.state.apiResponse;
+        console.log(stateResponse);
+
         return (
             <div className="App">
-                {this.state.apiResponse.map((url) => (
-                    <Card key={url.key} >
+                {stateResponse.map((url) => (
 
-                        <div>
+                    <Grid key={url.key} id="top-row" container spacing={24}>
+                        <Grid item xs={4}>
                             <img
-                                style={{width: 500, height: 500}}
                                 src={url.data} />
-                        </div>
-                    </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <img
+                                src={url.data2} />
+                        </Grid>
+                    </Grid>
+
 
                 ))}
 
@@ -82,6 +101,7 @@ class App extends Component {
 }
 
 export default App;
+
 
 
 
