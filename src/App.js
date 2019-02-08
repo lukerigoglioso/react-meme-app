@@ -69,7 +69,7 @@ class App extends Component {
 
                         <div>
                             <img
-                                style={{width: 500, height: 500}}
+                                style={{width: 350, height: 350}}
                                 src={url.data} />
                         </div>
                     </Card>
@@ -82,12 +82,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
