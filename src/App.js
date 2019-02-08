@@ -19,17 +19,11 @@ class App extends Component {
         super(props);
         this.state = { apiResponse: []};
         this.setterFunction = this.setterFunction.bind(this);
-
     }
-
     callAPI() {
-        // fetch("http://localhost:9000/memes")
-        // .then(res => this.setState({ apiResponse: res }));
 
         var setterFunction = this.setterFunction;
         var dataUrlArray = [];
-
-        // axios.get('http://localhost:9000/memes')
         axios.get('https://www.reddit.com/r/meme/new/.json')
             .then(function (response) {
                 // handle success
@@ -38,11 +32,8 @@ class App extends Component {
                 console.log(temp)
                 var childArray = temp.data.data.children;
                 console.log(childArray)
-                // var urlArray = childArray.slice(0,childArray.length);
                 var jsonResponse = childArray ;
                 for (var option in jsonResponse) {
-                    // console.log(response.data.urlArray[option].data.url);
-                    // dataUrlArray[option] = response.data.urlArray[option].data.url;
                     dataUrlArray[option] = {key: option, data: jsonResponse[option].data.url};
                 }
                 console.log(dataUrlArray);
@@ -59,28 +50,19 @@ class App extends Component {
                 console.log(arrayObj);
                 setterFunction(arrayObj);
             });
-
     }
-
     setterFunction(responseUrlArray){
-
         this.setState({ apiResponse: responseUrlArray })
     }
-
-
     componentWillMount() {
         this.callAPI();
     }
-
     render() {
-
         var stateResponse = this.state.apiResponse;
         console.log(stateResponse);
-
         return (
             <div className="App">
                 {stateResponse.map((url) => (
-
                     <Grid key={url.key} id="top-row" container spacing={24}>
                         <Grid item xs={4}>
                             <img
@@ -91,26 +73,9 @@ class App extends Component {
                                 src={url.data2} />
                         </Grid>
                     </Grid>
-
-
                 ))}
-
             </div>
         );
     }
 }
-
 export default App;
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
->>>>>>> d6bedcdb70a03e90413f5603be1d5c06cff842be
