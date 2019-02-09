@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -13,6 +12,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import logo from './mamaMeme.png';
+
 
 
 const styles = theme => ({
@@ -55,8 +56,9 @@ class App extends Component {
                 var childArray = temp.data.data.children;
                 console.log(childArray)
                 var jsonResponse = childArray ;
+                var arrayObj = [];
                 for (var option in jsonResponse) {
-                    dataUrlArray[option] = {key: option, data: jsonResponse[option].data.url};
+                    arrayObj[option] = {keyAll: option, dataAll: jsonResponse[option].data.url};
                 }
                 console.log(dataUrlArray);
 
@@ -64,7 +66,6 @@ class App extends Component {
                 console.log(left);
                 var right = dataUrlArray.slice(13);
                 console.log(right);
-                var arrayObj = [];
                 for (var i = 0; i < left.length ; i++) {
                     console.log(left[i]);
                     arrayObj.push({key: i, data: left[i].data, key2: i, data2: right[i].data})
@@ -84,18 +85,25 @@ class App extends Component {
         var stateResponse = this.state.apiResponse;
         console.log(stateResponse);
         return (
-            <div className={classes.root}>
+
+            <div className={classes.root} style={{backgroundColor: "#a2e1f9"}}>>
+              <header className="App-header">
+                <h1 className="App-title">
+                  MommaMemes
+                </h1>
+                <div>Freshest Memes daily... Just How Momma Use to Make!</div>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <img src={logo} className="App-logo" alt="logo"/>
+              </header>
                 {stateResponse.map((url) => (
                   <Paper className={classes.paper}>
                     <Grid item>
-                        <img className={classes.img} src={url.data} />
+                        <img className={classes.img} src={url.dataAll} />
                     </Grid>
-                    <Grid item>
-                        <img className={classes.img} src={url.data2} />
-                    </Grid>
-
-                  </Paper>
-
+                    </Paper>
                 ))}
             </div>
         );
