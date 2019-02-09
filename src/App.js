@@ -86,7 +86,7 @@ class App extends Component {
         console.log(stateResponse);
         return (
 
-            <div className={classes.root} style={{backgroundColor: "#a2e1f9"}}>>
+            <div className={classes.root} style={{backgroundColor: "#a2e1f9"}}>
               <header className="App-header">
                 <h1 className="App-title">
                   MommaMemes
