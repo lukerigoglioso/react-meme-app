@@ -12,7 +12,29 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    margin: 'auto',
+    maxWidth: 500,
+  },
+  image: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
+});
 
 class App extends Component {
     constructor(props) {
@@ -58,24 +80,26 @@ class App extends Component {
         this.callAPI();
     }
     render() {
+      const { classes } = this.props;
         var stateResponse = this.state.apiResponse;
         console.log(stateResponse);
         return (
-            <div className="App">
+            <div className={classes.root}>
                 {stateResponse.map((url) => (
-                    <Grid key={url.key} id="top-row" container spacing={24}>
-                        <Grid item xs={4}>
-                            <img
-                                src={url.data} />
-                        </Grid>
-                        <Grid item xs={4}>
-                            <img
-                                src={url.data2} />
-                        </Grid>
+                  <Paper className={classes.paper}>
+                    <Grid item>
+                        <img className={classes.img} src={url.data} />
                     </Grid>
+                    <Grid item>
+                        <img className={classes.img} src={url.data2} />
+                    </Grid>
+
+                  </Paper>
+
                 ))}
             </div>
         );
     }
+
 }
-export default App;
+export default withStyles(styles)(App);
