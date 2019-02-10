@@ -9,21 +9,19 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import logo from './mamaMeme.png';
 
-
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    background: '#a2e1f9'
   },
   paper: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 4,
     margin: 'auto',
-    maxWidth: 500,
+    maxWidth: 800,
   },
   image: {
     width: 128,
@@ -44,7 +42,6 @@ class App extends Component {
         this.setterFunction = this.setterFunction.bind(this);
     }
     callAPI() {
-
         var setterFunction = this.setterFunction;
         var dataUrlArray = [];
         axios.get('https://www.reddit.com/r/meme/new/.json')
@@ -61,7 +58,6 @@ class App extends Component {
                     arrayObj[option] = {keyAll: option, dataAll: jsonResponse[option].data.url};
                 }
                 console.log(dataUrlArray);
-
                 var left = dataUrlArray.slice(0,12) ;
                 console.log(left);
                 var right = dataUrlArray.slice(13);
@@ -85,22 +81,18 @@ class App extends Component {
         var stateResponse = this.state.apiResponse;
         console.log(stateResponse);
         return (
-
-            <div className={classes.root} style={{backgroundColor: "#a2e1f9"}}>
+            <div className={classes.root}>
               <header className="App-header">
                 <h1 className="App-title">
                   MommaMemes
                 </h1>
                 <div>Freshest Memes daily... Just How Momma Use to Make!</div>
                 <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
                 <img src={logo} className="App-logo" alt="logo"/>
               </header>
                 {stateResponse.map((url) => (
                   <Paper className={classes.paper}>
-                    <Grid item>
+                    <Grid >
                         <img className={classes.img} src={url.dataAll} />
                     </Grid>
                     </Paper>
@@ -108,6 +100,5 @@ class App extends Component {
             </div>
         );
     }
-
 }
 export default withStyles(styles)(App);
